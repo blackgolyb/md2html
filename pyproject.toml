@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "md2html"
+version = "0.1.0"
+description = ""
+authors = ["Blackgolyb <andrejomelnickij@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "apps" },
+    { include = "services" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+markdown = "^3.4.4"
+jinja2 = "^3.1.2"
+pymdown-extensions = "^10.2.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

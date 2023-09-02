@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+		<title>{{ title }}</title>
+		<meta name="color-scheme" content="light dark">
+		<style>
+            {{ styles }}
+		</style>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css">
+		<style>
+			.github-fork-ribbon:before {
+				background-color: #121612;
+			}
+		</style>
+
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/androidstudio.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+	</head>
+	<body>
+        {{ body_top }}
+        <div class="default-block theme-changer">
+            <div class="theme-toggle theme-toggle-js">
+                <span class="moon"></span>
+                <span class="sun"></span>
+                <small class="sun__ray"></small>
+                <small class="sun__ray"></small>
+                <small class="sun__ray"></small>
+                <small class="sun__ray"></small>
+                <small class="sun__ray"></small>
+                <small class="sun__ray"></small>
+            </div>
+        </div>
+        
+
+		<article class="markdown-body">
+            {{ markdown_html }}
+        </article>
+
+        <div class="scroll-to-top default-block">
+
+        </div>
+
+        {{ body_bottom }}
+        
+        {{ body_extend }}
+        <script>
+            {{ scripts }}
+        </script>
+    </body>
+</html>

@@ -1,0 +1,196 @@
+:root, :root.light  {
+    --color-primary: #fff;
+    --color-secondary: #24292f;
+}
+:root {
+    --color-primary: #0d1117;
+    --color-secondary: #c9d1d9;
+}
+* {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+}
+ul, ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+.theme-changer {
+    background: var(--color-primary);
+    border-radius: 6px;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    right: 30px;
+    top: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: none;
+    <!-- border: solid 1px var(--color-secondary); -->
+}
+
+.theme-toggle {
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.theme-toggle .sun {
+    background: var(--color-secondary);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+}
+.theme-toggle .sun__ray {
+    width: 2px;
+    background: var(--color-secondary);
+    display: block;
+    height: 70%;
+    position: absolute;
+    z-index: -1;
+    transition: 0.4s all, height 0.3s ease-in-out;
+}
+.theme-toggle .sun__ray:nth-child(1) {
+    transform: rotate(calc(1 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(2) {
+    transform: rotate(calc(2 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(3) {
+    transform: rotate(calc(3 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(4) {
+    transform: rotate(calc(4 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(5) {
+    transform: rotate(calc(5 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(6) {
+    transform: rotate(calc(6 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(7) {
+    transform: rotate(calc(7 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(8) {
+    transform: rotate(calc(8 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(9) {
+    transform: rotate(calc(9 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(10) {
+    transform: rotate(calc(10 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(11) {
+    transform: rotate(calc(11 * calc(360deg / 12)));
+}
+.theme-toggle .sun__ray:nth-child(12) {
+    transform: rotate(calc(12 * calc(360deg / 12)));
+}
+.theme-changer:hover .sun__ray:nth-child(1) {
+    transform: rotate(calc(calc(1 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(2) {
+    transform: rotate(calc(calc(2 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(3) {
+    transform: rotate(calc(calc(3 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(4) {
+    transform: rotate(calc(calc(4 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(5) {
+    transform: rotate(calc(calc(5 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(6) {
+    transform: rotate(calc(calc(6 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(7) {
+    transform: rotate(calc(calc(7 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(8) {
+    transform: rotate(calc(calc(8 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(9) {
+    transform: rotate(calc(calc(9 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(10) {
+    transform: rotate(calc(calc(10 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(11) {
+    transform: rotate(calc(calc(11 * calc(360deg / 12)) - 20deg));
+}
+.theme-changer:hover .sun__ray:nth-child(12) {
+    transform: rotate(calc(calc(12 * calc(360deg / 12)) - 20deg));
+}
+.moon {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    background: var(--color-primary);
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+    transform: scale(0) translate(25%, -25%);
+    z-index: 9;
+    transition: 0.4s transform;
+    transform-origin: right;
+}
+.dark .theme-toggle {
+    background-color: var(--color-primary);
+}
+.dark .theme-changer:hover .moon {
+    transform: scale(1) translate(-50%, 35%);
+}
+.dark .moon {
+    transform: scale(1) translate(-40%, 50%);
+}
+.dark .theme-toggle .sun__ray {
+    height: 0;
+    transition: 0.4s, transform 0.4s, height 0.2s 0.1s;
+}
+.dark .theme-toggle .sun__ray:nth-child(1) {
+    transform: rotate(calc(calc(1 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(2) {
+    transform: rotate(calc(calc(2 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(3) {
+    transform: rotate(calc(calc(3 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(4) {
+    transform: rotate(calc(calc(4 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(5) {
+    transform: rotate(calc(calc(5 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(6) {
+    transform: rotate(calc(calc(6 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(7) {
+    transform: rotate(calc(calc(7 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(8) {
+    transform: rotate(calc(calc(8 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(9) {
+    transform: rotate(calc(calc(9 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(10) {
+    transform: rotate(calc(calc(10 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(11) {
+    transform: rotate(calc(calc(11 * calc(360deg / 12)) - 45deg));
+}
+.dark .theme-toggle .sun__ray:nth-child(12) {
+    transform: rotate(calc(calc(12 * calc(360deg / 12)) - 45deg));
+}
