@@ -34,7 +34,7 @@ a {
     justify-content: center;
     overflow: hidden;
     transition: none;
-    <!-- border: solid 1px var(--color-secondary); -->
+    border: solid 1px var(--color-secondary);
 }
 
 .theme-toggle {

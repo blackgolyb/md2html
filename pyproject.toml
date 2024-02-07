@@ -6,7 +6,6 @@ authors = ["Blackgolyb <andrejomelnickij@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [
-    { include = "apps" },
     { include = "services" },
 ]
 

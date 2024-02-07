@@ -1,18 +1,19 @@
 # App config
 css_files = [
     "./resources/css/main_style.css",
-    "./github-markdown-css/github-markdown.css",
+    "./resources/css/theme_markdown.css",
 ]
 
 js_files = [
-    # "./template_script.js",
+    "./resources/js/MathJax_init.js",
 ]
 
 template_file = "./resources/templates/main_template.html"
 
+apps_dir = "apps"
 apps = [
-    {"preority": 0, "app": "theme_switcher", "options": {"value_name": "value"}},
-    "app_name",
+    # {"preority": 0, "app": "app", "options": {"value_name": "value"}},
+    "theme_switcher",
 ]
 
 
@@ -20,7 +21,9 @@ apps = [
 extensions = [
     "fenced_code",
     "tables",
+    "attr_list",
     "pymdownx.blocks.admonition",
+    "pymdownx.details",
     "pymdownx.tasklist",
     "pymdownx.magiclink",
     "pymdownx.tabbed",
@@ -30,13 +33,13 @@ extensions = [
     "pymdownx.arithmatex",
     "pymdownx.tilde",
     "pymdownx.progressbar",
+    "pymdownx.emoji",
     "pymdownx.keys",
 ]
 
 extensions_config = {
     "pymdownx.arithmatex": {
         "generic": True,
-        # 'genhjeric': False,
     }
     # "pymdownx.inlinehilite": {
     #     "custom_inline": [

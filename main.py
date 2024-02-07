@@ -1,18 +1,14 @@
+from pathlib import Path
+
 import click
 import markdown
 from jinja2 import Template
 
-from pathlib import Path
-
-import config
 from services.base.apps_controller import AppsController
+import config
 
 
-def load_apps():
-    return []
-
-
-def decorate_html(html):
+def decorate_html(html, title):
     with open(config.template_file, "r", encoding="utf-8") as html_template_file:
         template = Template(html_template_file.read())
 
@@ -26,15 +22,17 @@ def decorate_html(html):
         with open(js_file, "r", encoding="utf-8") as scripts_file:
             scripts += scripts_file.read() + "\n\n"
 
-    apps = load_apps()
-    for app in apps:
-        styles += app.style + "\n\n"
-        scripts += app.script + "\n\n"
+    controller = AppsController()
+    controller.load_apps_from_dir()
+    styles += controller.get_styles()
+    scripts += controller.get_scripts()
 
-    return template.render(styles=styles, scripts=scripts, markdown_html=html)
+    return template.render(
+        title=title, styles=styles, scripts=scripts, markdown_html=html
+    )
 
 
-def md_to_html(input_file, output_file):
+def md_to_html(input_file, output_file, title):
     with input_file.open("r", encoding="utf-8") as md_file:
         md_text = md_file.read()
 
@@ -43,8 +41,7 @@ def md_to_html(input_file, output_file):
         extensions=config.extensions,
         extension_configs=config.extensions_config,
     )
-    # md_html = markdown.markdown(md_text, extensions=['fenced_code', 'codehilite', 'tables'])
-    md_html = decorate_html(md_html)
+    md_html = decorate_html(md_html, title)
 
     with output_file.open(
         "w", encoding="utf-8", errors="xmlcharrefreplace"
@@ -53,6 +50,7 @@ def md_to_html(input_file, output_file):
 
 
 @click.command()
+@click.help_option("-h", "--help")
 @click.option(
     "--input",
     "-i",
@@ -68,13 +66,24 @@ def md_to_html(input_file, output_file):
     help="Output html file path.",
     type=click.Path(),
 )
-def md_to_html_cli(input_file, output_file):
+@click.option(
+    "--title",
+    "-t",
+    "title",
+    default=None,
+    help="Title of the result file.",
+    type=str,
+)
+def md_to_html_cli(input_file, output_file, title):
     input_file = Path(input_file)
 
     if output_file is None:
         output_file = input_file.parent / f"{input_file.stem}.html"
     else:
         output_file = Path(output_file)
+
+    if title is None:
+        title = output_file.stem
 
     if not output_file.parent.exists():
         click.echo(
@@ -83,7 +92,7 @@ def md_to_html_cli(input_file, output_file):
         )
         return
 
-    md_to_html(input_file, output_file)
+    md_to_html(input_file, output_file, title)
 
 
 def main():

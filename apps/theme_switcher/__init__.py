@@ -1,3 +1,3 @@
-from main import ThemeSwitcher
+from .main import ThemeSwitcher
 
-app_cls = App
+App = ThemeSwitcher
