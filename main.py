@@ -4,32 +4,31 @@ import click
 import markdown
 from jinja2 import Template
 
-from services.base.apps_controller import AppsController
 import config
+from services.base.apps_compositor import AppsContentCompositor
 
 
-def decorate_html(html, title):
+def collect_file_content(files) -> str:
+    result = ""
+    for _file in files:
+        with open(_file, "r", encoding="utf-8") as f:
+            result += f.read() + "\n\n"
+    return result
+
+
+def decorate_html(html, title) -> str:
     with open(config.template_file, "r", encoding="utf-8") as html_template_file:
         template = Template(html_template_file.read())
 
-    styles = ""
-    for css_file in config.css_files:
-        with open(css_file, "r", encoding="utf-8") as styles_file:
-            styles += styles_file.read() + "\n\n"
+    styles = collect_file_content(config.css_files)
+    scripts = collect_file_content(config.js_files)
 
-    scripts = ""
-    for js_file in config.js_files:
-        with open(js_file, "r", encoding="utf-8") as scripts_file:
-            scripts += scripts_file.read() + "\n\n"
+    compositor = AppsContentCompositor()
+    compositor.load_apps_from_dir()
+    styles += compositor.get_styles()
+    scripts += compositor.get_scripts()
 
-    controller = AppsController()
-    controller.load_apps_from_dir()
-    styles += controller.get_styles()
-    scripts += controller.get_scripts()
-
-    return template.render(
-        title=title, styles=styles, scripts=scripts, markdown_html=html
-    )
+    return template.render(title=title, styles=styles, scripts=scripts, markdown_html=html)
 
 
 def md_to_html(input_file, output_file, title):
@@ -43,9 +42,7 @@ def md_to_html(input_file, output_file, title):
     )
     md_html = decorate_html(md_html, title)
 
-    with output_file.open(
-        "w", encoding="utf-8", errors="xmlcharrefreplace"
-    ) as html_file:
+    with output_file.open("w", encoding="utf-8", errors="xmlcharrefreplace") as html_file:
         html_file.write(md_html)
 
 

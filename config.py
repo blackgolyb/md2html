@@ -1,14 +1,18 @@
-# App config
+from pathlib import Path
+
+PROJECT_PATH = Path(__file__).absolute().parent
+RESOURCES_PATH = PROJECT_PATH / "resources"
+
 css_files = [
-    "./resources/css/main_style.css",
-    "./resources/css/theme_markdown.css",
+    RESOURCES_PATH / "css/main_style.css",
+    RESOURCES_PATH / "css/theme_markdown.css",
 ]
 
 js_files = [
-    "./resources/js/MathJax_init.js",
+    RESOURCES_PATH / "js/MathJax_init.js",
 ]
 
-template_file = "./resources/templates/main_template.html"
+template_file = RESOURCES_PATH / "templates/main_template.html"
 
 apps_dir = "apps"
 apps = [

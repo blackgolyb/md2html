@@ -1,4 +1,4 @@
 from services.base.app import App
 
-class ThemeSwitcher(App):
-    ...
+
+class ThemeSwitcher(App): ...
